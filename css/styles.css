@@ -83,6 +83,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -1250,11 +1251,14 @@ ul, ol { list-style: none; }
   .about-grid { grid-template-columns: 1fr; }
   .about__photo { max-width: 280px; margin-bottom: var(--sp-4); }
   .proof-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero__floating-tag--3 { display: none; }
 }
 
 @media (max-width: 768px) {
   :root {
     --fs-hero: clamp(1.75rem, 6vw, 2.5rem);
+    --fs-3xl: 1.75rem;
+    --fs-4xl: 2.25rem;
     --sp-24: 4rem;
     --sp-20: 3rem;
   }
@@ -1284,8 +1288,20 @@ ul, ol { list-style: none; }
   .hero__grid { grid-template-columns: 1fr; }
   .hero__visual { order: -1; margin-bottom: var(--sp-6); }
   .hero__floating-tag { display: none; }
+  .hero__intro { font-size: var(--fs-base); }
+  .hero__value-prop { font-size: var(--fs-lg); }
+  .hero__card { max-width: 100%; }
+
+  .capability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 
   .case-study__grid { grid-template-columns: 1fr; }
+  .case-study { padding: var(--sp-6); }
 
   .workflow {
     grid-template-columns: 1fr;
@@ -1293,19 +1309,88 @@ ul, ol { list-style: none; }
   }
   .workflow__step:not(:last-child) .workflow__num::after { display: none; }
 
+  .stack-split { grid-template-columns: 1fr; gap: var(--sp-8); }
+
   .contact-grid { grid-template-columns: 1fr; }
 
-  .footer__grid { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; gap: var(--sp-6); }
   .footer__bottom { flex-direction: column; text-align: center; }
+
+  .modal {
+    max-width: 100%;
+    max-height: 90vh;
+    margin: 0;
+  }
+  .arch-block {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
+  .gallery__arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+  .modal__header { padding: var(--sp-4) var(--sp-6); }
+  .modal__body { padding: var(--sp-6); }
+  .modal__section { margin-bottom: var(--sp-6); }
+
+  .section { padding-block: var(--sp-16); }
+  .section-header { margin-bottom: var(--sp-8); }
+
+  .proof-stat { padding: var(--sp-6) var(--sp-2); }
+  .proof-stat__num { font-size: var(--fs-3xl); }
 }
 
 @media (max-width: 480px) {
+  :root {
+    --fs-hero: 1.75rem;
+    --fs-3xl: 1.5rem;
+    --fs-4xl: 2rem;
+  }
   .container { padding-inline: var(--sp-4); }
   .hero__ctas { flex-direction: column; align-items: stretch; }
   .hero__ctas .btn { justify-content: center; }
+  .hero__card-body { padding: var(--sp-6); }
+  .hero__mock-grid { gap: var(--sp-3); }
+  .hero__mock-tile { padding: var(--sp-4); }
+
+  .proof-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+  .proof-stat { padding: var(--sp-4) var(--sp-1); }
+  .proof-stat__num { font-size: var(--fs-2xl); }
+
+  .project-card__links { flex-direction: column; align-items: stretch; }
+  .project-card__links .btn { justify-content: center; }
+
+  .filters { gap: var(--sp-1); }
+  .filter-btn { padding: .3rem .7rem; font-size: var(--fs-xs); }
+
+  .contact-form { padding: var(--sp-6); }
+  .contact-item { padding: var(--sp-3); }
+
+  .case-study { padding: var(--sp-4); }
+
+  .section { padding-block: var(--sp-12); }
+  .section-title { font-size: var(--fs-2xl); }
+
+  .footer__bottom { gap: var(--sp-3); }
+  .footer__social a { width: 32px; height: 32px; }
+
+  .modal__body { padding: var(--sp-4); }
+  .modal__title { font-size: var(--fs-lg); }
+
+  .gallery__viewport { aspect-ratio: 4 / 3; }
+  .gallery__arrow { width: 32px; height: 32px; font-size: 1.1rem; }
+
+  .about__photo { max-width: 200px; }
+  .about__intro { font-size: var(--fs-base); }
+}
+
+@media (max-width: 360px) {
+  .container { padding-inline: 12px; }
+  :root { --fs-hero: 1.5rem; }
+  .hero__mock-grid { grid-template-columns: 1fr; gap: var(--sp-2); }
   .proof-grid { grid-template-columns: 1fr 1fr; }
-  .modal__header { padding: var(--sp-4) var(--sp-6); }
-  .modal__body { padding: var(--sp-6); }
+  .hero__card-body { padding: var(--sp-4); }
 }
 
 /* ----- Gallery Carousel (inside modal) ----------------------------------- */
