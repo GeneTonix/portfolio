@@ -1279,6 +1279,7 @@ ul, ol { list-style: none; }
   }
   .nav__links.open { max-height: 400px; }
   .nav__links a {
+    display: block;
     width: 100%;
     padding: var(--sp-4) var(--sp-6);
     border-bottom: 1px solid var(--c-border);
@@ -1288,6 +1289,7 @@ ul, ol { list-style: none; }
     border-radius: 0;
     text-align: left;
   }
+  .nav__links li { width: 100%; }
   .nav__links a.btn {
     display: block;
     width: calc(100% - var(--sp-12));
