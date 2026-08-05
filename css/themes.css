@@ -1,0 +1,30 @@
+/* ==========================================================================
+   THEME — DARK MODE VARIABLES
+   ========================================================================== */
+
+[data-theme="dark"] {
+  --c-accent:        #3b82f6;
+  --c-accent-hover:  #2563eb;
+  --c-accent-soft:   rgba(59,130,246,.15);
+
+  --c-text:          #f1f5f9;
+  --c-text-muted:    #94a3b8;
+  --c-text-soft:     #64748b;
+
+  --c-bg:            #0f172a;
+  --c-bg-alt:        #1e293b;
+  --c-bg-card:       #1e293b;
+  --c-border:       #334155;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
+  --shadow:    0 2px 8px rgba(0,0,0,.4);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,.5);
+}
+
+[data-theme="dark"] .nav {
+  background: color-mix(in srgb, var(--c-bg) 90%, transparent);
+}
+
+[data-theme="dark"] .project-card__thumb {
+  background: linear-gradient(135deg, rgba(59,130,246,.1), var(--c-bg-alt));
+}

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gene — UX/UI Designer</title>
+  <meta name="description" content="Stop guessing why visitors leave. Let's design a site that keeps them.">
+  <meta name="author" content="Gene">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Gene — UX/UI Designer">
+  <meta property="og:description" content="Stop guessing why visitors leave. Let's design a site that keeps them.">
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:image" content="[OG IMAGE URL]"> -->
+
+  <!-- Favicon -->
+  <!-- <link rel="icon" href="favicon.ico"> -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/themes.css">
+</head>
+<body>
+
+<!-- ======================================================================
+     NAVIGATION
+     ====================================================================== -->
+<nav class="nav" aria-label="Main navigation">
+  <div class="container nav__inner">
+    <a href="#hero" class="nav__brand">Gene<span>.</span></a>
+
+    <ul class="nav__links" id="navLinks" role="menubar">
+      <li role="none"><a href="#capabilities" role="menuitem">Capabilities</a></li>
+      <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
+      <li role="none"><a href="#case-studies" role="menuitem">Case Studies</a></li>
+      <li role="none"><a href="#workflow" role="menuitem">Workflow</a></li>
+      <li role="none"><a href="#stack" role="menuitem">Stack</a></li>
+      <li role="none"><a href="#about" role="menuitem">About</a></li>
+      <li role="none"><a href="#contact" role="menuitem" class="btn btn--primary btn--sm">Contact Me</a></li>
+    </ul>
+
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+      <button class="nav__burger" id="navBurger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================================================================
+     1. HERO SECTION
+     ====================================================================== -->
+<section id="hero" class="hero">
+  <div class="container hero__grid">
+    <div class="hero__content">
+      <span class="hero__badge">Available for new projects</span>
+      <h1 class="hero__title">
+        Gene<br>
+        <span class="accent">UX/UI Designer</span>
+      </h1>
+      <p class="hero__value-prop">Stop guessing why visitors leave. Let's design a site that keeps them.</p>
+      <p class="hero__intro"><strong>No website yet? Let's build it right the first time.</strong><br>I'm Gene, and I take the guesswork out of launching online. I build custom, user-focused websites for business owners who want to bypass the tech confusion and get straight to turning visitors into customers.</p>
+      <div class="hero__ctas">
+        <!-- Replace href with your contact link (mailto:, form URL, etc.) -->
+        <a href="#contact" class="btn btn--primary">Contact Me</a>
+        <a href="#projects" class="btn btn--secondary">View Projects</a>
+      </div>
+      <div class="hero__trust">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>From idea to live website — smooth, simple, and hassle-free</span>
+      </div>
+    </div>
+
+    <!-- Hero visual — branded mock card -->
+    <div class="hero__visual">
+      <div class="hero__floating-tag hero__floating-tag--1">⚡ Frontend</div>
+      <div class="hero__floating-tag hero__floating-tag--2">⚙ Backend</div>
+      <div class="hero__floating-tag hero__floating-tag--3">🗄 Database</div>
+      <div class="hero__card">
+        <div class="hero__card-top">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="hero__card-body">
+          <div class="hero__mock-line w-60"></div>
+          <div class="hero__mock-line w-80"></div>
+          <div class="hero__mock-line w-40 accent"></div>
+          <div class="hero__mock-grid">
+            <div class="hero__mock-tile">
+              <div class="hero__mock-tile-num">2</div>
+              <div class="hero__mock-tile-label">Projects</div>
+            </div>
+            <div class="hero__mock-tile">
+              <div class="hero__mock-tile-num">5</div>
+              <div class="hero__mock-tile-label">Systems Built</div>
+            </div>
+          </div>
+          <div class="hero__mock-line w-80" style="margin-top:1.5rem"></div>
+          <div class="hero__mock-line w-60"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     2. CAPABILITY SECTION
+     ====================================================================== -->
+<section id="capabilities" class="section section--alt">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Capabilities</span>
+      <h2 class="section-title">What I can build for you</h2>
+      <p class="section-sub">Full-range web development services — from simple business sites to complex database-driven systems with payment integration.</p>
+    </div>
+
+    <div class="capability-grid">
+      <!-- Card 1 -->
+      <div class="cap-card reveal">
+        <div class="cap-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3 class="cap-card__title">Business Websites</h3>
+        <p class="cap-card__desc">Professional, mobile-first websites that present your services clearly and make it easy for customers to reach you.</p>
+        <ul class="cap-card__outcomes">
+          <li>Fast, responsive, SEO-ready design</li>
+          <li>Clear service catalog and call-to-actions</li>
+          <li>WhatsApp and contact form integration</li>
+        </ul>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="cap-card reveal">
+        <div class="cap-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h3 class="cap-card__title">Payment Page Builds</h3>
+        <p class="cap-card__desc">Checkout pages and payment flows that integrate with payment gateways to help you collect payments online.</p>
+        <ul class="cap-card__outcomes">
+          <li>Stripe / PayPal / local gateway integration</li>
+          <li>Secure, conversion-focused checkout flow</li>
+          <li>Automatic payment confirmation</li>
+        </ul>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="cap-card reveal">
+        <div class="cap-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <h3 class="cap-card__title">Database-Driven Systems</h3>
+        <p class="cap-card__desc">Custom systems with data storage, user accounts, and admin panels — built to manage your business operations.</p>
+        <ul class="cap-card__outcomes">
+          <li>Custom data models and schemas</li>
+          <li>CRUD operations and role-based access</li>
+          <li>Lead tracking and pipeline management</li>
+        </ul>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="cap-card reveal">
+        <div class="cap-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+        </div>
+        <h3 class="cap-card__title">Lead Generation Websites</h3>
+        <p class="cap-card__desc">Websites built to capture and convert visitors into inquiries — with forms, quick actions, and instant contact options.</p>
+        <ul class="cap-card__outcomes">
+          <li>Optimized forms and clear call-to-actions</li>
+          <li>Quick-action buttons for instant service selection</li>
+          <li>WhatsApp integration for immediate contact</li>
+        </ul>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="cap-card reveal">
+        <div class="cap-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="cap-card__title">Admin Dashboards</h3>
+        <p class="cap-card__desc">Internal dashboards for managing leads, viewing statistics, and tracking your business pipeline in one place.</p>
+        <ul class="cap-card__outcomes">
+          <li>Lead statistics and pipeline overview</li>
+          <li>Status tracking from inquiry to conversion</li>
+          <li>Secure admin login and lead management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     3. FEATURED PROJECTS
+     ====================================================================== -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Featured Projects</span>
+      <h2 class="section-title">Selected work</h2>
+      <p class="section-sub">A curated selection of projects showing different architectures and capabilities.</p>
+    </div>
+
+    <!-- Filter buttons are auto-generated from project categories in JS -->
+    <div class="filters" id="filterContainer"></div>
+
+    <!-- Project cards are auto-rendered from the projects array in js/main.js -->
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     4. CASE STUDY PREVIEW
+     ====================================================================== -->
+<section id="case-studies" class="section section--alt">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Case Studies</span>
+      <h2 class="section-title">How I think, not just what I build</h2>
+      <p class="section-sub">Each case study walks through the problem, solution, and outcome — so you can see my process.</p>
+    </div>
+
+    <!-- Case Study 1: Orion Aquatic -->
+    <div class="case-study reveal">
+      <div class="case-study__header">
+        <h3 class="case-study__title">Orion Aquatic — Pool Services Website</h3>
+        <span class="arch-badge arch-badge--fe"><span class="dot"></span>Frontend only</span>
+      </div>
+      <div class="case-study__grid">
+        <div class="case-study__field">
+          <span class="label">Problem</span>
+          <span class="value">A Singapore pool services company needed an online presence to attract clients for lifeguard services, pool maintenance, and equipment supply — but had no website and no way to capture inquiries digitally.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">Goal</span>
+          <span class="value">Build a professional, mobile-first website that showcases services, allows potential clients to request quotes, and positions the company as a trusted pool service provider in Singapore.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">What I Built</span>
+          <span class="value">A complete lead-generation website with a service catalog (lifeguard, maintenance, equipment), equipment shop with bulk enquiry system, FAQ section, WhatsApp integration, and a clean, conversion-focused design.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">Key Challenge</span>
+          <span class="value">Organizing 3 distinct service types into a single clean homepage that doesn't overwhelm visitors — while making it obvious what the company does within 5 seconds of landing.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">Outcome</span>
+          <span class="value">The site is live and serving as the company's primary digital storefront. Visitors can quickly identify their needed service and reach out via WhatsApp or the quote form.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">Next Improvement</span>
+          <span class="value">Add online booking system for lifeguard services, and integrate a payment gateway for equipment orders.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Study 2: LeadFlow CRM -->
+    <div class="case-study reveal">
+      <div class="case-study__header">
+        <h3 class="case-study__title">LeadFlow CRM — Lead Management System</h3>
+        <span class="arch-badge arch-badge--full"><span class="dot"></span>Frontend + Backend + Database</span>
+      </div>
+      <div class="case-study__grid">
+        <div class="case-study__field">
+          <span class="label">Problem</span>
+          <span class="value">Businesses capture leads from multiple sources (website forms, phone calls, walk-ins) but have no centralized system to track where each lead is in the sales process — resulting in missed follow-ups and lost opportunities.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">Goal</span>
+          <span class="value">Build a custom CRM that captures leads from any source, tracks them through every stage (new → contacted → converted → lost), and gives the business owner a clear dashboard view of their pipeline.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">What I Built</span>
+          <span class="value">A full-stack CRM with secure admin login, lead dashboard with statistics, lead pipeline with status tracking, lead detail view with notes and history, and a REST API that accepts form submissions from external websites.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">Key Challenge</span>
+          <span class="value">Designing a database schema that tracks lead status changes over time while keeping the admin interface simple enough for non-technical users to navigate comfortably.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">Outcome</span>
+          <span class="value">A working CRM that now manages leads for the portfolio website itself — every contact form submission flows directly into the system, and can be tracked from inquiry to conversion.</span>
+        </div>
+        <div class="case-study__field">
+          <span class="label">Next Improvement</span>
+          <span class="value">Add email automation for follow-up reminders, and a client-facing portal where leads can check their own status.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     5. WORKFLOW
+     ====================================================================== -->
+<section id="workflow" class="section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Workflow</span>
+      <h2 class="section-title">How I work</h2>
+      <p class="section-sub">A clear, step-by-step process from first conversation to launch.</p>
+    </div>
+
+    <div class="workflow">
+      <div class="workflow__step reveal">
+        <div class="workflow__num">1</div>
+        <h3 class="workflow__title">Discovery</h3>
+        <p class="workflow__desc">We talk about your business, your goals, and your customers. I need to understand what you're trying to achieve and what success looks like for you.</p>
+      </div>
+      <div class="workflow__step reveal">
+        <div class="workflow__num">2</div>
+        <h3 class="workflow__title">Planning</h3>
+        <p class="workflow__desc">I research your industry, study reference designs, and map out the structure of your site. You'll see the plan — pages, sections, and actions — before any building starts.</p>
+      </div>
+      <div class="workflow__step reveal">
+        <div class="workflow__num">3</div>
+        <h3 class="workflow__title">Design & Build</h3>
+        <p class="workflow__desc">I build your site or system based on proven design patterns, refined to fit your brand. You get to see progress at each stage and give feedback as we go.</p>
+      </div>
+      <div class="workflow__step reveal">
+        <div class="workflow__num">4</div>
+        <h3 class="workflow__title">Testing</h3>
+        <p class="workflow__desc">Every site is tested across phones, tablets, and desktops. I check that forms work, pages load fast, and nothing breaks before we go live.</p>
+      </div>
+      <div class="workflow__step reveal">
+        <div class="workflow__num">5</div>
+        <h3 class="workflow__title">Launch & Handover</h3>
+        <p class="workflow__desc">I handle the deployment, get your site live, and walk you through how everything works. You get a fully functional, ready-to-use website delivered without any confusion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     6. STACK & SYSTEMS
+     ====================================================================== -->
+<section id="stack" class="section section--alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Stack & Systems</span>
+      <h2 class="section-title">Technology I work with</h2>
+      <p class="section-sub">Organized in two layers — what it means for your business, and the technical details.</p>
+    </div>
+
+    <div class="stack-split">
+      <!-- Layer A: Client-friendly -->
+      <div class="stack-layer reveal">
+        <h3 class="stack-layer__title">What I Can Do <span class="pill">For Your Business</span></h3>
+        <p class="stack-layer__sub">Plain-English capabilities — no jargon.</p>
+        <ul class="stack-summary-list">
+          <li>Responsive frontend development</li>
+          <li>Backend integration and APIs</li>
+          <li>Database-connected systems</li>
+          <li>Payment and form workflows</li>
+          <li>Automation-ready builds</li>
+          <li>Admin dashboards and reporting</li>
+        </ul>
+      </div>
+
+      <!-- Layer B: Technical details -->
+      <div class="stack-layer reveal">
+        <h3 class="stack-layer__title">Technical Details <span class="pill">For Developers</span></h3>
+        <p class="stack-layer__sub">The tools and technologies behind the work.</p>
+
+        <div class="stack-list">
+          <!-- Frontend -->
+          <div class="stack-group">
+            <h4 class="stack-group__title">Frontend</h4>
+            <div class="stack-items">
+              <span class="stack-item">HTML5</span>
+              <span class="stack-item">CSS3</span>
+              <span class="stack-item">JavaScript</span>
+              <span class="stack-item">Responsive Design</span>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div class="stack-group">
+            <h4 class="stack-group__title">Backend</h4>
+            <div class="stack-items">
+              <span class="stack-item">PHP</span>
+              <span class="stack-item">REST APIs</span>
+              <span class="stack-item">Supabase</span>
+            </div>
+          </div>
+
+          <!-- Databases -->
+          <div class="stack-group">
+            <h4 class="stack-group__title">Databases</h4>
+            <div class="stack-items">
+              <span class="stack-item">MySQL (MariaDB)</span>
+              <span class="stack-item">PostgreSQL (Supabase)</span>
+            </div>
+          </div>
+
+          <!-- Tools / Deployment -->
+          <div class="stack-group">
+            <h4 class="stack-group__title">Tools / Deployment</h4>
+            <div class="stack-items">
+              <span class="stack-item">GitHub Pages</span>
+              <span class="stack-item">XAMPP</span>
+              <span class="stack-item">Git</span>
+            </div>
+          </div>
+
+          <!-- Integrations -->
+          <div class="stack-group">
+            <h4 class="stack-group__title">Integrations</h4>
+            <div class="stack-items">
+              <span class="stack-item">Telegram Bot API</span>
+              <span class="stack-item">Resend Email API</span>
+              <span class="stack-item">WhatsApp</span>
+              <span class="stack-item">Supabase Edge Functions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     7. ABOUT
+     ====================================================================== -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">About</span>
+      <h2 class="section-title">Who I am</h2>
+    </div>
+
+    <div class="about-grid">
+      <!-- Photo -->
+      <div class="about__photo">
+        <img src="images/ProfilePic.png" alt="Gene — UX/UI Designer">
+      </div>
+
+      <div class="about__content">
+        <p class="about__intro">I'm Gene, a web designer who specializes in helping startups and small businesses launch and elevate their digital presence. Whether you need an engaging website built from scratch or an upgrade to transform your existing site, I build clean, goal-driven digital experiences. My focus is on eliminating tech confusion so you can launch with confidence and turn visitors into loyal customers.</p>
+
+        <div class="about__section">
+          <h3>Who I Help</h3>
+          <p><strong>Early-Stage Startups:</strong> Founders who need a strong, modern web presence built right from Day 1 to gain traction.</p>
+          <p><strong>Businesses Ready for an Upgrade:</strong> Owners with existing, outdated sites that need a refresh to boost conversions and fix design friction.</p>
+          <p><strong>Time-Strapped Entrepreneurs:</strong> Busy professionals who want a reliable, done-for-you launch without wasting hours navigating complex tools.</p>
+        </div>
+
+        <div class="about__section">
+          <h3>How I Work</h3>
+          <p><strong>Strategy First:</strong> We map out your core offer, target audience, and primary call-to-action before opening any software.</p>
+          <p><strong>Goal-Driven Design:</strong> I craft a clean, intuitive layout designed to guide visitors smoothly toward taking action.</p>
+          <p><strong>Hassle-Free Launch:</strong> I manage the entire build process from start to finish — handling all the setup, design, and final details. You get a fully functional, ready-to-use website delivered without any complicated technical speak or stress.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     8. PROOF / CREDIBILITY
+     ====================================================================== -->
+<section id="proof" class="section section--alt">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Proof</span>
+      <h2 class="section-title">Reasons to trust me</h2>
+    </div>
+
+    <!-- Stats -->
+    <div class="proof-grid">
+      <div class="proof-stat reveal">
+        <div class="proof-stat__num">2</div>
+        <div class="proof-stat__label">Projects Built</div>
+      </div>
+      <div class="proof-stat reveal">
+        <div class="proof-stat__num">1+</div>
+        <div class="proof-stat__label">Years Building</div>
+      </div>
+      <div class="proof-stat reveal">
+        <div class="proof-stat__num">4</div>
+        <div class="proof-stat__label">Specialties</div>
+      </div>
+      <div class="proof-stat reveal">
+        <div class="proof-stat__num"><a href="https://github.com/GeneTonix" target="_blank" rel="noopener" style="font-size:var(--fs-xl);font-weight:700">@GeneTonix</a></div>
+        <div class="proof-stat__label">Public GitHub Activity</div>
+      </div>
+    </div>
+
+    <!-- Currently Building -->
+    <div style="text-align:center;margin-bottom:var(--sp-12)">
+      <span class="hero__badge">Currently Building</span>
+      <p style="margin-top:var(--sp-2);font-size:var(--fs-lg);color:var(--c-text-muted)">
+        Expanding my skills in cloud databases and automation integration.
+      </p>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="section-header" style="margin-bottom:var(--sp-8)">
+      <h3 style="font-size:var(--fs-xl);font-weight:700">Testimonials</h3>
+      <p class="section-sub" style="margin-top:var(--sp-2)">Client feedback will appear here as the portfolio grows.</p>
+    </div>
+
+    <div style="text-align:center;padding:var(--sp-12);background:var(--c-bg-card);border:1px solid var(--c-border);border-radius:var(--radius);color:var(--c-text-soft)">
+      <p style="font-size:var(--fs-lg);margin-bottom:var(--sp-2)">No testimonials yet</p>
+      <p style="font-size:var(--fs-sm)">Be the first to work with me — <a href="#contact" style="font-weight:600">get in touch</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     9. CONTACT
+     ====================================================================== -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Contact</span>
+      <h2 class="section-title">Let's build something</h2>
+      Tell me about your project — I'll get back to you within 24 hours.
+    </div>
+
+    <div class="contact-grid">
+      <!-- Contact info -->
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item__label">Email</div>
+            <div class="contact-item__value">
+          <a href="mailto:gchuazj@gmail.com" onclick="copyEmail('gchuazj@gmail.com'); return false;">gchuazj@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </div>
+          <div>
+            <div class="contact-item__label">GitHub</div>
+            <div class="contact-item__value">
+              <a href="https://github.com/GeneTonix" target="_blank" rel="noopener">GeneTonix</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div>
+            <div class="contact-item__label">LinkedIn</div>
+            <div class="contact-item__value">
+              <a href="https://www.linkedin.com/in/GChuaZJ" target="_blank" rel="noopener">Gene Chua</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item__label">WhatsApp / Telegram</div>
+            <div class="contact-item__value">
+              <a href="https://t.me/Gene_Chuaa" target="_blank" rel="noopener">@Gene_Chuaa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact form — connected to Supabase (free cloud database) -->
+      <!-- See README.md → "Supabase Setup" for step-by-step instructions -->
+      <form class="contact-form" id="contactForm" action="" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Project Type</label>
+          <input type="text" id="subject" name="subject" placeholder="What do you need built?">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project — goals, timeline, budget range..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">Send Message</button>
+        <p style="font-size:var(--fs-xs);color:var(--c-text-soft);text-align:center">
+          <!-- Form is connected to Supabase. See README.md for setup instructions. -->
+          Your message is sent securely. I'll get back to you within 24 hours.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     10. FOOTER
+     ====================================================================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">Gene<span>.</span></div>
+        <p class="footer__tagline">Building websites that turn visitors into customers.</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#capabilities">Capabilities</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#case-studies">Case Studies</a></li>
+          <li><a href="#workflow">Workflow</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://github.com/GeneTonix" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/GChuaZJ" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="mailto:gchuazj@gmail.com">Email</a></li>
+          <li><a href="https://t.me/Gene_Chuaa" target="_blank" rel="noopener">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; <span id="year">2026</span> Gene. All rights reserved.</span>
+      <div class="footer__social">
+        <a href="https://github.com/GeneTonix" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.467-2.38 1.235-3.22-.135-.303-.535-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.045.137 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/GChuaZJ" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:gchuazj@gmail.com" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal for project details -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Project details">
+  <div id="modalContent"></div>
+</div>
+
+<!-- Copy-to-clipboard toast -->
+<div class="copied-toast" id="copiedToast" role="alert"></div>
+
+<script src="js/supabase-config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
