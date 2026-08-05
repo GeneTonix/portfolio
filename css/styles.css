@@ -1249,7 +1249,8 @@ ul, ol { list-style: none; }
 @media (max-width: 1024px) {
   .stack-split { grid-template-columns: 1fr; gap: var(--sp-8); }
   .about-grid { grid-template-columns: 1fr; }
-  .about__photo { max-width: 280px; margin-bottom: var(--sp-4); }
+  .about__photo { max-width: 280px; margin: 0 auto var(--sp-4); }
+  .about__content { width: 100%; }
   .proof-grid { grid-template-columns: repeat(2, 1fr); }
   .hero__floating-tag--3 { display: none; }
 }
@@ -1339,6 +1340,10 @@ ul, ol { list-style: none; }
 
   .proof-stat { padding: var(--sp-6) var(--sp-2); }
   .proof-stat__num { font-size: var(--fs-3xl); }
+
+  .about-grid { grid-template-columns: 1fr; justify-items: center; }
+  .about__photo { max-width: 240px; margin: 0 auto var(--sp-6); }
+  .about__content { width: 100%; }
 }
 
 @media (max-width: 480px) {
@@ -1381,8 +1386,12 @@ ul, ol { list-style: none; }
   .gallery__viewport { aspect-ratio: 4 / 3; }
   .gallery__arrow { width: 32px; height: 32px; font-size: 1.1rem; }
 
-  .about__photo { max-width: 200px; }
+  .about__photo { max-width: 180px; }
   .about__intro { font-size: var(--fs-base); }
+
+  .hero__badge { font-size: var(--fs-xs); padding: .3rem .7rem; }
+  .hero__trust { font-size: var(--fs-xs); }
+  .hero__trust svg { width: 16px; height: 16px; }
 }
 
 @media (max-width: 360px) {
@@ -1391,6 +1400,7 @@ ul, ol { list-style: none; }
   .hero__mock-grid { grid-template-columns: 1fr; gap: var(--sp-2); }
   .proof-grid { grid-template-columns: 1fr 1fr; }
   .hero__card-body { padding: var(--sp-4); }
+  .proof-stat__num { font-size: var(--fs-xl); }
 }
 
 /* ----- Gallery Carousel (inside modal) ----------------------------------- */
