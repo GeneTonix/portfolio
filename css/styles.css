@@ -1514,7 +1514,7 @@ details.about__section--collapsible .about__section-body { display: block; }
     scrollbar-width: none;
   }
   .filters::-webkit-scrollbar { display: none; }
-  .filter-btn { flex-shrink: 0; }
+  .filter-btn { flex-shrink: 0; min-height: 44px; padding: .5rem 1rem; font-size: var(--fs-sm); }
 
   .projects-grid {
     display: flex;
@@ -1536,7 +1536,7 @@ details.about__section--collapsible .about__section-body { display: block; }
   .project-card__thumb { height: 160px; }
   .project-card__body { padding: var(--sp-4); }
   .project-card__links { flex-direction: row; flex-wrap: wrap; }
-  .project-card__links .btn { font-size: var(--fs-xs); }
+  .project-card__links .btn { font-size: var(--fs-xs); min-height: 44px; }
 }
 
 /* ----- 5. Case studies — details/summary collapse ----------------------- */
@@ -1781,7 +1781,7 @@ details.about__section--collapsible .about__section-body { display: block; }
   .footer__col { display: none; }
   .footer__bottom { flex-direction: column; gap: var(--sp-3); }
   .footer__social { justify-content: center; }
-  .footer__social a { width: 36px; height: 36px; }
+  .footer__social a { width: 44px; height: 44px; }
 }
 
 /* ----- 12. Bottom action bar --------------------------------------------- */
