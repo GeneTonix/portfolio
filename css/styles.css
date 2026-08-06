@@ -1759,10 +1759,10 @@ details.about__section--collapsible .about__section-body { display: block; }
     flex: 1;
     text-align: center;
   }
-  .contact-item__icon { width: 40px; height: 40px; }
-  .contact-item__icon svg { width: 18px; height: 18px; }
-  .contact-item__label { font-size: 10px; }
-  .contact-item__value { font-size: var(--fs-xs); }
+  .contact-item__icon { width: 44px; height: 44px; min-width: 44px; }
+  .contact-item__icon svg { width: 20px; height: 20px; }
+  .contact-item__label { display: none; }
+  .contact-item__value { display: none; }
   .contact-item__value a { word-break: break-all; }
 
   .contact-form { padding: var(--sp-4); }
