@@ -22,8 +22,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/styles.css?v=3">
-  <link rel="stylesheet" href="css/themes.css?v=3">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/themes.css?v=5">
 </head>
 <body>
 
@@ -46,12 +46,15 @@
 
     <div class="nav__actions">
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
-      <button class="nav__burger" id="navBurger" aria-label="Toggle menu">
+      <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </nav>
+
+<!-- Nav drawer backdrop (CSS-controlled, JS toggles .open class) -->
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
 <!-- ======================================================================
      1. HERO SECTION
@@ -121,74 +124,99 @@
 
     <div class="capability-grid">
       <!-- Card 1 -->
-      <div class="cap-card reveal">
-        <div class="cap-card__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <details class="cap-card reveal" open>
+        <summary class="cap-card__summary">
+          <span class="cap-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </span>
+          <span class="cap-card__title">Business Websites</span>
+          <span class="cap-card__chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="cap-card__body">
+          <p class="cap-card__desc">Professional, mobile-first websites that present your services clearly and make it easy for customers to reach you.</p>
+          <ul class="cap-card__outcomes">
+            <li>Fast, responsive, SEO-ready design</li>
+            <li>Clear service catalog and call-to-actions</li>
+            <li>WhatsApp and contact form integration</li>
+          </ul>
         </div>
-        <h3 class="cap-card__title">Business Websites</h3>
-        <p class="cap-card__desc">Professional, mobile-first websites that present your services clearly and make it easy for customers to reach you.</p>
-        <ul class="cap-card__outcomes">
-          <li>Fast, responsive, SEO-ready design</li>
-          <li>Clear service catalog and call-to-actions</li>
-          <li>WhatsApp and contact form integration</li>
-        </ul>
-      </div>
+      </details>
 
       <!-- Card 2 -->
-      <div class="cap-card reveal">
-        <div class="cap-card__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <details class="cap-card reveal">
+        <summary class="cap-card__summary">
+          <span class="cap-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </span>
+          <span class="cap-card__title">Payment Page Builds</span>
+          <span class="cap-card__chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="cap-card__body">
+          <p class="cap-card__desc">Checkout pages and payment flows that integrate with payment gateways to help you collect payments online.</p>
+          <ul class="cap-card__outcomes">
+            <li>Stripe / PayPal / local gateway integration</li>
+            <li>Secure, conversion-focused checkout flow</li>
+            <li>Automatic payment confirmation</li>
+          </ul>
         </div>
-        <h3 class="cap-card__title">Payment Page Builds</h3>
-        <p class="cap-card__desc">Checkout pages and payment flows that integrate with payment gateways to help you collect payments online.</p>
-        <ul class="cap-card__outcomes">
-          <li>Stripe / PayPal / local gateway integration</li>
-          <li>Secure, conversion-focused checkout flow</li>
-          <li>Automatic payment confirmation</li>
-        </ul>
-      </div>
+      </details>
 
       <!-- Card 3 -->
-      <div class="cap-card reveal">
-        <div class="cap-card__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      <details class="cap-card reveal">
+        <summary class="cap-card__summary">
+          <span class="cap-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </span>
+          <span class="cap-card__title">Database-Driven Systems</span>
+          <span class="cap-card__chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="cap-card__body">
+          <p class="cap-card__desc">Custom systems with data storage, user accounts, and admin panels — built to manage your business operations.</p>
+          <ul class="cap-card__outcomes">
+            <li>Custom data models and schemas</li>
+            <li>CRUD operations and role-based access</li>
+            <li>Lead tracking and pipeline management</li>
+          </ul>
         </div>
-        <h3 class="cap-card__title">Database-Driven Systems</h3>
-        <p class="cap-card__desc">Custom systems with data storage, user accounts, and admin panels — built to manage your business operations.</p>
-        <ul class="cap-card__outcomes">
-          <li>Custom data models and schemas</li>
-          <li>CRUD operations and role-based access</li>
-          <li>Lead tracking and pipeline management</li>
-        </ul>
-      </div>
+      </details>
 
       <!-- Card 4 -->
-      <div class="cap-card reveal">
-        <div class="cap-card__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+      <details class="cap-card reveal">
+        <summary class="cap-card__summary">
+          <span class="cap-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+          </span>
+          <span class="cap-card__title">Lead Generation Websites</span>
+          <span class="cap-card__chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="cap-card__body">
+          <p class="cap-card__desc">Websites built to capture and convert visitors into inquiries — with forms, quick actions, and instant contact options.</p>
+          <ul class="cap-card__outcomes">
+            <li>Optimized forms and clear call-to-actions</li>
+            <li>Quick-action buttons for instant service selection</li>
+            <li>WhatsApp integration for immediate contact</li>
+          </ul>
         </div>
-        <h3 class="cap-card__title">Lead Generation Websites</h3>
-        <p class="cap-card__desc">Websites built to capture and convert visitors into inquiries — with forms, quick actions, and instant contact options.</p>
-        <ul class="cap-card__outcomes">
-          <li>Optimized forms and clear call-to-actions</li>
-          <li>Quick-action buttons for instant service selection</li>
-          <li>WhatsApp integration for immediate contact</li>
-        </ul>
-      </div>
+      </details>
 
       <!-- Card 5 -->
-      <div class="cap-card reveal">
-        <div class="cap-card__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <details class="cap-card reveal">
+        <summary class="cap-card__summary">
+          <span class="cap-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </span>
+          <span class="cap-card__title">Admin Dashboards</span>
+          <span class="cap-card__chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="cap-card__body">
+          <p class="cap-card__desc">Internal dashboards for managing leads, viewing statistics, and tracking your business pipeline in one place.</p>
+          <ul class="cap-card__outcomes">
+            <li>Lead statistics and pipeline overview</li>
+            <li>Status tracking from inquiry to conversion</li>
+            <li>Secure admin login and lead management</li>
+          </ul>
         </div>
-        <h3 class="cap-card__title">Admin Dashboards</h3>
-        <p class="cap-card__desc">Internal dashboards for managing leads, viewing statistics, and tracking your business pipeline in one place.</p>
-        <ul class="cap-card__outcomes">
-          <li>Lead statistics and pipeline overview</li>
-          <li>Status tracking from inquiry to conversion</li>
-          <li>Secure admin login and lead management</li>
-        </ul>
-      </div>
+      </details>
     </div>
   </div>
 </section>
@@ -224,11 +252,12 @@
     </div>
 
     <!-- Case Study 1: Orion Aquatic -->
-    <div class="case-study reveal">
-      <div class="case-study__header">
+    <details class="case-study reveal">
+      <summary class="case-study__header">
         <h3 class="case-study__title">Orion Aquatic — Pool Services Website</h3>
         <span class="arch-badge arch-badge--fe"><span class="dot"></span>Frontend only</span>
-      </div>
+        <span class="case-study__chevron" aria-hidden="true"></span>
+      </summary>
       <div class="case-study__grid">
         <div class="case-study__field">
           <span class="label">Problem</span>
@@ -255,14 +284,15 @@
           <span class="value">Add online booking system for lifeguard services, and integrate a payment gateway for equipment orders.</span>
         </div>
       </div>
-    </div>
+    </details>
 
     <!-- Case Study 2: LeadFlow CRM -->
-    <div class="case-study reveal">
-      <div class="case-study__header">
+    <details class="case-study reveal">
+      <summary class="case-study__header">
         <h3 class="case-study__title">LeadFlow CRM — Lead Management System</h3>
         <span class="arch-badge arch-badge--full"><span class="dot"></span>Frontend + Backend + Database</span>
-      </div>
+        <span class="case-study__chevron" aria-hidden="true"></span>
+      </summary>
       <div class="case-study__grid">
         <div class="case-study__field">
           <span class="label">Problem</span>
@@ -289,7 +319,7 @@
           <span class="value">Add email automation for follow-up reminders, and a client-facing portal where leads can check their own status.</span>
         </div>
       </div>
-    </div>
+    </details>
   </div>
 </section>
 
@@ -345,9 +375,17 @@
       <p class="section-sub">Organized in two layers — what it means for your business, and the technical details.</p>
     </div>
 
+    <!-- CSS-only two-tab control: hidden radio inputs + labels, :checked switches panels -->
+    <div class="stack-tabs" role="tablist" aria-label="Stack layers">
+      <input type="radio" name="stack-tab" id="stack-tab-business" class="stack-tabs__input" checked>
+      <label for="stack-tab-business" class="stack-tabs__label">For Your Business</label>
+      <input type="radio" name="stack-tab" id="stack-tab-dev" class="stack-tabs__input">
+      <label for="stack-tab-dev" class="stack-tabs__label">For Developers</label>
+    </div>
+
     <div class="stack-split">
       <!-- Layer A: Client-friendly -->
-      <div class="stack-layer reveal">
+      <div class="stack-layer stack-layer--business reveal">
         <h3 class="stack-layer__title">What I Can Do <span class="pill">For Your Business</span></h3>
         <p class="stack-layer__sub">Plain-English capabilities — no jargon.</p>
         <ul class="stack-summary-list">
@@ -361,7 +399,7 @@
       </div>
 
       <!-- Layer B: Technical details -->
-      <div class="stack-layer reveal">
+      <div class="stack-layer stack-layer--dev reveal">
         <h3 class="stack-layer__title">Technical Details <span class="pill">For Developers</span></h3>
         <p class="stack-layer__sub">The tools and technologies behind the work.</p>
 
@@ -439,6 +477,9 @@
       </div>
 
       <div class="about__content">
+        <!-- Hero intro paragraph — physically lives here in HTML, shown on mobile, hidden on desktop -->
+        <p class="about__hero-intro"><strong>No website yet? Let's build it right the first time.</strong> I'm Gene, and I take the guesswork out of launching online. I build custom, user-focused websites for business owners who want to bypass the tech confusion and get straight to turning visitors into customers.</p>
+
         <p class="about__intro">I'm Gene, a web designer who specializes in helping startups and small businesses launch and elevate their digital presence. Whether you need an engaging website built from scratch or an upgrade to transform your existing site, I build clean, goal-driven digital experiences. My focus is on eliminating tech confusion so you can launch with confidence and turn visitors into loyal customers.</p>
 
         <div class="about__section">
@@ -448,12 +489,17 @@
           <p><strong>Time-Strapped Entrepreneurs:</strong> Busy professionals who want a reliable, done-for-you launch without wasting hours navigating complex tools.</p>
         </div>
 
-        <div class="about__section">
-          <h3>How I Work</h3>
-          <p><strong>Strategy First:</strong> We map out your core offer, target audience, and primary call-to-action before opening any software.</p>
-          <p><strong>Goal-Driven Design:</strong> I craft a clean, intuitive layout designed to guide visitors smoothly toward taking action.</p>
-          <p><strong>Hassle-Free Launch:</strong> I manage the entire build process from start to finish — handling all the setup, design, and final details. You get a fully functional, ready-to-use website delivered without any complicated technical speak or stress.</p>
-        </div>
+        <details class="about__section about__section--collapsible">
+          <summary class="about__section-header">
+            <h3>How I Work</h3>
+            <span class="about__section-toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="about__section-body">
+            <p><strong>Strategy First:</strong> We map out your core offer, target audience, and primary call-to-action before opening any software.</p>
+            <p><strong>Goal-Driven Design:</strong> I craft a clean, intuitive layout designed to guide visitors smoothly toward taking action.</p>
+            <p><strong>Hassle-Free Launch:</strong> I manage the entire build process from start to finish — handling all the setup, design, and final details. You get a fully functional, ready-to-use website delivered without any complicated technical speak or stress.</p>
+          </div>
+        </details>
       </div>
     </div>
   </div>
@@ -495,17 +541,6 @@
       <p style="margin-top:var(--sp-2);font-size:var(--fs-lg);color:var(--c-text-muted)">
         Expanding my skills in cloud databases and automation integration.
       </p>
-    </div>
-
-    <!-- Testimonials -->
-    <div class="section-header" style="margin-bottom:var(--sp-8)">
-      <h3 style="font-size:var(--fs-xl);font-weight:700">Testimonials</h3>
-      <p class="section-sub" style="margin-top:var(--sp-2)">Client feedback will appear here as the portfolio grows.</p>
-    </div>
-
-    <div style="text-align:center;padding:var(--sp-12);background:var(--c-bg-card);border:1px solid var(--c-border);border-radius:var(--radius);color:var(--c-text-soft)">
-      <p style="font-size:var(--fs-lg);margin-bottom:var(--sp-2)">No testimonials yet</p>
-      <p style="font-size:var(--fs-sm)">Be the first to work with me — <a href="#contact" style="font-weight:600">get in touch</a>.</p>
     </div>
   </div>
 </section>
@@ -576,13 +611,15 @@
       <!-- Contact form — connected to Supabase (free cloud database) -->
       <!-- See README.md → "Supabase Setup" for step-by-step instructions -->
       <form class="contact-form" id="contactForm" action="" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@company.com" required>
+        <div class="form-group--row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required>
+          </div>
         </div>
         <div class="form-group">
           <label for="subject">Project Type</label>
@@ -661,7 +698,13 @@
 <!-- Copy-to-clipboard toast -->
 <div class="copied-toast" id="copiedToast" role="alert"></div>
 
-<script src="js/supabase-config.js?v=3"></script>
-<script src="js/main.js?v=3"></script>
+<!-- Bottom action bar — real HTML markup, CSS shows on mobile, JS toggles .visible on scroll -->
+<div class="mobile-action-bar" id="mobileActionBar">
+  <a href="#contact" class="mobile-action-bar__btn mobile-action-bar__btn--primary">Contact Me</a>
+  <a href="https://t.me/Gene_Chuaa" target="_blank" rel="noopener" class="mobile-action-bar__btn mobile-action-bar__btn--secondary">Telegram</a>
+</div>
+
+<script src="js/supabase-config.js?v=4"></script>
+<script src="js/main.js?v=5"></script>
 </body>
 </html>
