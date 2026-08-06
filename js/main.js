@@ -709,19 +709,43 @@
   /* ----- Bottom action bar scroll observer ------------------------------- */
   var actionBar = document.getElementById('mobileActionBar');
   if (actionBar) {
+    var mobileMQ = window.matchMedia('(max-width: 767px)');
+
+    // Add body padding class once on load for mobile, never remove
+    if (mobileMQ.matches) {
+      document.body.classList.add('has-action-bar');
+    }
+
     var heroEl = document.getElementById('hero');
+    var actionBarRafPending = false;
+
     function checkActionBarScroll() {
+      actionBarRafPending = false;
+      if (!mobileMQ.matches) return;
       var heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight : 600;
       if (window.scrollY > heroBottom - 200) {
         actionBar.classList.add('visible');
-        document.body.classList.add('has-action-bar');
       } else {
         actionBar.classList.remove('visible');
-        document.body.classList.remove('has-action-bar');
       }
     }
-    window.addEventListener('scroll', checkActionBarScroll, { passive: true });
-    checkActionBarScroll();
+
+    window.addEventListener('scroll', function () {
+      if (!actionBarRafPending && mobileMQ.matches) {
+        actionBarRafPending = true;
+        requestAnimationFrame(checkActionBarScroll);
+      }
+    }, { passive: true });
+
+    // Listen for breakpoint changes
+    mobileMQ.addEventListener('change', function (e) {
+      if (e.matches) {
+        document.body.classList.add('has-action-bar');
+      } else {
+        document.body.classList.remove('has-action-bar');
+        actionBar.classList.remove('visible');
+      }
+    });
   }
 
 })();
