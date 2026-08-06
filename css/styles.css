@@ -1828,6 +1828,12 @@ details.about__section--collapsible .about__section-body { display: block; }
     border: 2px solid var(--c-border);
   }
   body.has-action-bar { padding-bottom: 80px; }
+
+  /* Toast above action bar */
+  .copied-toast {
+    z-index: 210;
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 /* Hide bottom bar on desktop */
