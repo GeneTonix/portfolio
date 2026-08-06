@@ -653,7 +653,12 @@
   var navLinkEls = document.querySelectorAll('.nav__links a[href^="#"]');
 
   if (sections.length && navLinkEls.length) {
-    window.addEventListener('scroll', function () {
+    var desktopMQ = window.matchMedia('(min-width: 768px)');
+    var scrollRafPending = false;
+
+    function updateActiveLink() {
+      scrollRafPending = false;
+      if (!desktopMQ.matches) return; // Don't run on mobile
       var scrollY = window.pageYOffset;
       sections.forEach(function (section) {
         var top = section.offsetTop - 80;
@@ -662,14 +667,21 @@
         navLinkEls.forEach(function (link) {
           if (link.getAttribute('href') === '#' + id) {
             if (scrollY >= top && scrollY < bottom) {
-              link.style.color = 'var(--c-text)';
+              link.classList.add('is-active');
             } else {
-              link.style.color = '';
+              link.classList.remove('is-active');
             }
           }
         });
       });
-    });
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!scrollRafPending && desktopMQ.matches) {
+        scrollRafPending = true;
+        requestAnimationFrame(updateActiveLink);
+      }
+    }, { passive: true });
   }
 
   /* ======================================================================
