@@ -1626,12 +1626,17 @@ details.about__section--collapsible .about__section-body { display: block; }
     background: var(--c-bg-alt);
     border-radius: var(--radius-sm);
     padding: var(--sp-1);
+    position: relative;
   }
   .stack-tabs__input {
     position: absolute;
     opacity: 0;
     width: 0; height: 0;
     pointer-events: none;
+  }
+  .stack-tabs__input:focus-visible ~ .stack-tabs__label {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 2px;
   }
   .stack-tabs__label {
     flex: 1;
