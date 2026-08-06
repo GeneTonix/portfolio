@@ -171,7 +171,7 @@
     if (!projectsGrid) return;
     projectsGrid.innerHTML = projects.map(function (p) {
       var thumbHTML = p.thumbnail
-        ? '<img src="' + p.thumbnail + '" alt="' + p.title + '">'
+        ? '<img src="' + p.thumbnail + '" alt="' + p.title + '" width="680" height="360" loading="lazy">'
         : '';
 
       var liveBtn = p.liveDemo
@@ -599,5 +599,468 @@
       });
     });
   }
+
+  /* ======================================================================
+     MOBILE RESTRUCTURE — JS ENHANCEMENTS
+     Only runs on viewport < 768px. Desktop is completely unaffected.
+     ====================================================================== */
+
+  function isMobile() { return window.innerWidth < 768; }
+
+  /* ----- M1. Nav Drawer -------------------------------------------------- */
+  function setupNavDrawer() {
+    if (!isMobile()) return;
+    var burger = document.getElementById('navBurger');
+    var navLinks = document.getElementById('navLinks');
+    if (!burger || !navLinks) return;
+
+    // Create backdrop
+    var backdrop = document.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(backdrop);
+
+    var lastFocused = null;
+
+    function openDrawer() {
+      lastFocused = document.activeElement;
+      navLinks.classList.add('open');
+      backdrop.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      burger.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Focus first link
+      var firstLink = navLinks.querySelector('a');
+      if (firstLink) setTimeout(function() { firstLink.focus(); }, 300);
+    }
+
+    function closeDrawer() {
+      navLinks.classList.remove('open');
+      backdrop.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    burger.addEventListener('click', function () {
+      if (navLinks.classList.contains('open')) closeDrawer(); else openDrawer();
+    });
+
+    backdrop.addEventListener('click', closeDrawer);
+
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) closeDrawer();
+    });
+
+    // Store references for cleanup
+    burger._closeDrawer = closeDrawer;
+  }
+
+  /* ----- M2. Move hero intro to About ----------------------------------- */
+  function moveHeroIntroToAbout() {
+    if (!isMobile()) return;
+    var heroIntro = document.querySelector('.hero__intro');
+    var aboutIntro = document.querySelector('.about__intro');
+    if (!heroIntro || !aboutIntro) return;
+
+    // Prepend hero intro text before about intro
+    if (!aboutIntro.dataset.heroMerged) {
+      var heroText = heroIntro.innerHTML;
+      aboutIntro.innerHTML = heroText + '<br><br>' + aboutIntro.innerHTML;
+      aboutIntro.dataset.heroMerged = 'true';
+    }
+  }
+
+  /* ----- M3. Capabilities accordion ------------------------------------- */
+  function setupCapabilitiesAccordion() {
+    if (!isMobile()) return;
+    var cards = document.querySelectorAll('.cap-card');
+    if (!cards.length) return;
+
+    cards.forEach(function (card, index) {
+      // Skip if already enhanced
+      if (card.dataset.accordionReady) return;
+      card.dataset.accordionReady = 'true';
+
+      // Get existing elements
+      var icon = card.querySelector('.cap-card__icon');
+      var title = card.querySelector('.cap-card__title');
+      var desc = card.querySelector('.cap-card__desc');
+      var outcomes = card.querySelector('.cap-card__outcomes');
+
+      if (!icon || !title || !desc) return;
+
+      // Create header button
+      var header = document.createElement('button');
+      header.className = 'cap-card__header';
+      header.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
+      header.type = 'button';
+
+      // Move icon and title into header
+      var iconClone = icon.cloneNode(true);
+      var titleClone = title.cloneNode(true);
+      header.appendChild(iconClone);
+      header.appendChild(titleClone);
+
+      // Add summary text (the description, truncated)
+      var summary = document.createElement('span');
+      summary.className = 'cap-card__summary';
+      summary.textContent = desc.textContent;
+      header.appendChild(summary);
+
+      // Add chevron
+      var chevron = document.createElement('span');
+      chevron.className = 'cap-card__chevron';
+      chevron.setAttribute('aria-hidden', 'true');
+      chevron.textContent = '⌄';
+      header.appendChild(chevron);
+
+      // Create body wrapper
+      var body = document.createElement('div');
+      body.className = 'cap-card__body';
+      if (desc) body.appendChild(desc.cloneNode(true));
+      if (outcomes) body.appendChild(outcomes.cloneNode(true));
+
+      // Remove original elements
+      icon.remove();
+      title.remove();
+      desc.remove();
+      if (outcomes) outcomes.remove();
+
+      // Append new structure
+      card.appendChild(header);
+      card.appendChild(body);
+
+      // Set initial state
+      card.dataset.open = index === 0 ? 'true' : 'false';
+      if (index !== 0) {
+        header.setAttribute('aria-expanded', 'false');
+      }
+
+      // Click handler
+      header.addEventListener('click', function () {
+        var isOpen = card.dataset.open === 'true';
+        
+        // Close all others
+        cards.forEach(function (other) {
+          if (other !== card) {
+            other.dataset.open = 'false';
+            var otherHeader = other.querySelector('.cap-card__header');
+            if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle this one
+        card.dataset.open = isOpen ? 'false' : 'true';
+        header.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      });
+    });
+  }
+
+  /* ----- M4. Projects carousel (CSS handles scroll-snap, JS handles filter) */
+  // No extra JS needed — CSS handles the carousel. Filter buttons already work.
+
+  /* ----- M5. Case Studies — collapsed cards + bottom sheet --------------- */
+  function setupCaseStudyCollapse() {
+    if (!isMobile()) return;
+    var studies = document.querySelectorAll('.case-study');
+    if (!studies.length) return;
+
+    // Create sheet overlay
+    var sheetOverlay = document.createElement('div');
+    sheetOverlay.className = 'sheet-overlay';
+    sheetOverlay.setAttribute('role', 'dialog');
+    sheetOverlay.setAttribute('aria-modal', 'true');
+    sheetOverlay.innerHTML = '<div class="sheet"><div class="sheet__handle"></div><button class="sheet__close" aria-label="Close">×</button><div class="sheet__content"></div></div>';
+    document.body.appendChild(sheetOverlay);
+
+    var sheetContent = sheetOverlay.querySelector('.sheet__content');
+    var sheetClose = sheetOverlay.querySelector('.sheet__close');
+
+    studies.forEach(function (study, index) {
+      if (study.dataset.csEnhanced) return;
+      study.dataset.csEnhanced = 'true';
+
+      var grid = study.querySelector('.case-study__grid');
+      var title = study.querySelector('.case-study__title');
+      var badge = study.querySelector('.arch-badge');
+      if (!grid || !title) return;
+
+      // Get the Problem field text
+      var problemField = grid.querySelector('.case-study__field .label');
+      var problemValue = null;
+      var fields = grid.querySelectorAll('.case-study__field');
+      fields.forEach(function (f) {
+        var label = f.querySelector('.label');
+        if (label && label.textContent.trim() === 'Problem') {
+          problemValue = f.querySelector('.value');
+        }
+      });
+
+      // Add summary text before the grid
+      if (problemValue && !study.querySelector('.case-study__summary-text')) {
+        var summary = document.createElement('p');
+        summary.className = 'case-study__summary-text';
+        summary.textContent = problemValue.textContent;
+        study.insertBefore(summary, grid);
+      }
+
+      // Add expand button
+      if (!study.querySelector('.case-study__expand-btn')) {
+        var btn = document.createElement('button');
+        btn.className = 'case-study__expand-btn btn btn--secondary btn--sm';
+        btn.textContent = 'Read full case study →';
+        btn.type = 'button';
+        btn.addEventListener('click', function () {
+          var titleText = title ? title.textContent : 'Case Study';
+          sheetContent.innerHTML = '<div class="sheet__title">' + titleText + '</div>';
+          if (badge) {
+            var badgeClone = badge.cloneNode(true);
+            sheetContent.appendChild(badgeClone);
+          }
+          var gridClone = grid.cloneNode(true);
+          gridClone.style.display = 'grid';
+          gridClone.style.gridTemplateColumns = '1fr';
+          gridClone.style.gap = 'var(--sp-4)';
+          sheetContent.appendChild(gridClone);
+          sheetOverlay.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        });
+        study.appendChild(btn);
+      }
+    });
+
+    function closeSheet() {
+      sheetOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    sheetClose.addEventListener('click', closeSheet);
+    sheetOverlay.addEventListener('click', function (e) {
+      if (e.target === sheetOverlay) closeSheet();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && sheetOverlay.classList.contains('open')) closeSheet();
+    });
+
+    // Swipe down to close
+    var touchStartY = 0;
+    sheetOverlay.addEventListener('touchstart', function (e) {
+      touchStartY = e.touches[0].screenY;
+    }, { passive: true });
+    sheetOverlay.addEventListener('touchend', function (e) {
+      var diff = e.changedTouches[0].screenY - touchStartY;
+      if (diff > 80) closeSheet();
+    }, { passive: true });
+  }
+
+  /* ----- M7. Stack tabs -------------------------------------------------- */
+  function setupStackTabs() {
+    if (!isMobile()) return;
+    var stackSplit = document.querySelector('.stack-split');
+    if (!stackSplit || stackSplit.dataset.tabsReady) return;
+    stackSplit.dataset.tabsReady = 'true';
+
+    var layers = stackSplit.querySelectorAll('.stack-layer');
+    if (layers.length < 2) return;
+
+    // Create tab container
+    var tabsContainer = document.createElement('div');
+    tabsContainer.className = 'stack-tabs';
+    tabsContainer.setAttribute('role', 'tablist');
+
+    var tabLabels = [];
+    layers.forEach(function (layer, i) {
+      var title = layer.querySelector('.stack-layer__title');
+      var label = title ? title.textContent.replace(/For.*/, '').trim() || title.textContent : ('Tab ' + (i + 1));
+      // Extract just the main label
+      var pill = layer.querySelector('.stack-layer__title .pill');
+      if (pill) label = pill.textContent;
+      tabLabels.push(label);
+
+      var tab = document.createElement('button');
+      tab.className = 'stack-tab';
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      tab.textContent = label;
+      tab.addEventListener('click', function () {
+        tabsContainer.querySelectorAll('.stack-tab').forEach(function (t) {
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.setAttribute('aria-selected', 'true');
+        layers.forEach(function (l) { l.dataset.active = 'false'; });
+        layer.dataset.active = 'true';
+      });
+      tabsContainer.appendChild(tab);
+    });
+
+    stackSplit.insertBefore(tabsContainer, stackSplit.firstChild);
+    layers[0].dataset.active = 'true';
+  }
+
+  /* ----- M8. About — collapsible "How I Work" ---------------------------- */
+  function setupAboutAccordion() {
+    if (!isMobile()) return;
+    var sections = document.querySelectorAll('.about__section');
+    if (!sections.length) return;
+
+    // The second section (How I Work) becomes collapsible
+    if (sections.length >= 2) {
+      var howIWork = sections[1]; // "How I Work" is the second .about__section
+      if (howIWork.dataset.aboutEnhanced) return;
+      howIWork.dataset.aboutEnhanced = 'true';
+      howIWork.classList.add('about__section--collapsible');
+      howIWork.dataset.open = 'false';
+
+      var heading = howIWork.querySelector('h3');
+      var paragraphs = howIWork.querySelectorAll('p');
+      if (!heading || !paragraphs.length) return;
+
+      // Create header button
+      var header = document.createElement('button');
+      header.className = 'about__section-header';
+      header.setAttribute('aria-expanded', 'false');
+      header.type = 'button';
+
+      var headingClone = heading.cloneNode(true);
+      header.appendChild(headingClone);
+
+      var toggle = document.createElement('span');
+      toggle.className = 'about__section-toggle';
+      toggle.textContent = '⌄';
+      toggle.setAttribute('aria-hidden', 'true');
+      header.appendChild(toggle);
+
+      // Create body wrapper
+      var body = document.createElement('div');
+      body.className = 'about__section-body';
+      paragraphs.forEach(function (p) { body.appendChild(p.cloneNode(true)); });
+
+      // Remove originals
+      heading.remove();
+      paragraphs.forEach(function (p) { p.remove(); });
+
+      howIWork.appendChild(header);
+      howIWork.appendChild(body);
+
+      header.addEventListener('click', function () {
+        var isOpen = howIWork.dataset.open === 'true';
+        howIWork.dataset.open = isOpen ? 'false' : 'true';
+        header.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      });
+    }
+  }
+
+  /* ----- M10. Contact — merge Name + Email into one row ------------------ */
+  function setupContactFormRow() {
+    if (!isMobile()) return;
+    var form = document.getElementById('contactForm');
+    if (!form || form.dataset.formEnhanced) return;
+    form.dataset.formEnhanced = 'true';
+
+    var nameGroup = form.querySelector('#name')?.closest('.form-group');
+    var emailGroup = form.querySelector('#email')?.closest('.form-group');
+    if (!nameGroup || !emailGroup) return;
+
+    // Wrap both in a row container
+    var row = document.createElement('div');
+    row.className = 'form-group--row';
+    nameGroup.parentNode.insertBefore(row, nameGroup);
+    row.appendChild(nameGroup);
+    row.appendChild(emailGroup);
+  }
+
+  /* ----- M12. Bottom action bar ------------------------------------------ */
+  function setupBottomActionBar() {
+    if (!isMobile()) return;
+    if (document.querySelector('.mobile-action-bar')) return;
+
+    var bar = document.createElement('div');
+    bar.className = 'mobile-action-bar';
+    bar.innerHTML = 
+      '<a href="#contact" class="mobile-action-bar__btn mobile-action-bar__btn--primary">Contact Me</a>' +
+      '<a href="https://t.me/Gene_Chuaa" target="_blank" rel="noopener" class="mobile-action-bar__btn mobile-action-bar__btn--secondary">Telegram</a>';
+    document.body.appendChild(bar);
+    document.body.classList.add('has-action-bar');
+
+    // Show after scrolling past hero
+    var hero = document.getElementById('hero');
+    function checkScroll() {
+      if (!isMobile()) return;
+      var heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 600;
+      if (window.scrollY > heroBottom - 200) {
+        bar.classList.add('visible');
+      } else {
+        bar.classList.remove('visible');
+      }
+    }
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    checkScroll();
+  }
+
+  /* ----- M6. Workflow timeline — wrap content --------------------------- */
+  function setupWorkflowTimeline() {
+    if (!isMobile()) return;
+    var steps = document.querySelectorAll('.workflow__step');
+    if (!steps.length) return;
+
+    steps.forEach(function (step) {
+      if (step.dataset.workflowEnhanced) return;
+      step.dataset.workflowEnhanced = 'true';
+
+      var title = step.querySelector('.workflow__title');
+      var desc = step.querySelector('.workflow__desc');
+      if (!title || !desc) return;
+
+      // Check if content wrapper already exists
+      if (step.querySelector('.workflow__content')) return;
+
+      var content = document.createElement('div');
+      content.className = 'workflow__content';
+      content.appendChild(title.cloneNode(true));
+      content.appendChild(desc.cloneNode(true));
+      title.remove();
+      desc.remove();
+      step.appendChild(content);
+    });
+  }
+
+  /* ----- Initialize all mobile enhancements ------------------------------ */
+  function initMobile() {
+    if (!isMobile()) return;
+    setupNavDrawer();
+    moveHeroIntroToAbout();
+    setupCapabilitiesAccordion();
+    setupWorkflowTimeline();
+    setupCaseStudyCollapse();
+    setupStackTabs();
+    setupAboutAccordion();
+    setupContactFormRow();
+    setupBottomActionBar();
+  }
+
+  // Run on load
+  initMobile();
+
+  // Re-run on resize (debounced) — only if crossing the 768px boundary
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      // If switching to desktop, reload to clear mobile DOM changes
+      if (!isMobile() && document.querySelector('.mobile-action-bar')) {
+        window.location.reload();
+      }
+      // If switching to mobile, also reload to apply mobile enhancements
+      if (isMobile() && !document.querySelector('.mobile-action-bar')) {
+        window.location.reload();
+      }
+    }, 250);
+  });
 
 })();

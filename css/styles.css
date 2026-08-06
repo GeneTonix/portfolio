@@ -1506,3 +1506,539 @@ ul, ol { list-style: none; }
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ==========================================================================
+   MOBILE RESTRUCTURE — ALL OVERRIDES BELOW (max-width: 767px)
+   Desktop (>= 768px) is completely unaffected by everything in this block.
+   ========================================================================== */
+
+/* ----- M1. Nav Drawer (replaces burger dropdown) ------------------------ */
+@media (max-width: 767px) {
+  .nav__links {
+    position: fixed;
+    top: 0; right: 0;
+    width: 280px;
+    max-width: 85vw;
+    height: 100dvh;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--c-bg);
+    padding: 80px 0 var(--sp-8);
+    transform: translateX(100%);
+    transition: transform 300ms var(--ease);
+    z-index: 250;
+    overflow-y: auto;
+    box-shadow: -4px 0 30px rgba(0,0,0,.15);
+    border-bottom: none;
+    max-height: none;
+  }
+  .nav__links.open { transform: translateX(0); }
+  .nav__links li { width: 100%; }
+  .nav__links a {
+    display: block;
+    width: 100%;
+    padding: var(--sp-4) var(--sp-6);
+    border-bottom: 1px solid var(--c-border);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    text-align: left;
+    min-height: 48px;
+  }
+  .nav__links a.btn {
+    display: block;
+    width: calc(100% - 48px);
+    margin: var(--sp-4) var(--sp-6);
+    padding: .75rem 1.5rem;
+    border: 2px solid var(--c-accent);
+    border-radius: var(--radius-sm);
+    text-align: center;
+  }
+  .nav__burger { display: flex; }
+  .nav__burger[aria-expanded="true"] { z-index: 260; position: relative; }
+
+  /* Drawer backdrop */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,23,42,.5);
+    z-index: 240;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms var(--ease), visibility 300ms;
+  }
+  .nav-backdrop.open { opacity: 1; visibility: visible; }
+}
+
+/* ----- M2. Hero — cut to one screen ------------------------------------- */
+@media (max-width: 767px) {
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: 80px var(--sp-8);
+    overflow: hidden;
+  }
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__visual,
+  .hero__floating-tag { display: none !important; }
+  .hero__intro { display: none; } /* moved to About via JS */
+  .hero__value-prop { font-size: var(--fs-lg); margin-bottom: var(--sp-6); }
+  .hero__ctas { flex-direction: row; gap: var(--sp-3); }
+  .hero__ctas .btn { flex: 1; justify-content: center; }
+  .hero__trust { font-size: var(--fs-xs); }
+  .hero__trust svg { width: 16px; height: 16px; }
+}
+
+/* ----- M3. Capabilities — accordion ------------------------------------- */
+@media (max-width: 767px) {
+  .capability-grid { grid-template-columns: 1fr; gap: var(--sp-2); }
+  .cap-card { padding: 0; border-radius: var(--radius-sm); overflow: hidden; }
+  .cap-card:hover { transform: none; }
+  .cap-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    padding: var(--sp-4) var(--sp-4);
+    width: 100%;
+    background: var(--c-bg-card);
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    min-height: 48px;
+  }
+  .cap-card__header:focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: -2px;
+  }
+  .cap-card__icon { margin-bottom: 0; width: 36px; height: 36px; flex-shrink: 0; }
+  .cap-card__icon svg { width: 20px; height: 20px; }
+  .cap-card__title { margin-bottom: 0; font-size: var(--fs-base); flex: 1; }
+  .cap-card__summary {
+    font-size: var(--fs-sm);
+    color: var(--c-text-soft);
+    flex: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 180px;
+  }
+  .cap-card__chevron {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 200ms var(--ease);
+    color: var(--c-text-soft);
+    font-size: var(--fs-lg);
+  }
+  .cap-card[data-open="true"] .cap-card__chevron { transform: rotate(180deg); }
+  .cap-card__body {
+    padding: 0 var(--sp-4) var(--sp-4);
+    display: none;
+  }
+  .cap-card[data-open="true"] .cap-card__body { display: block; }
+  .cap-card__desc { margin-bottom: var(--sp-3); }
+}
+
+/* ----- M4. Projects — horizontal carousel -------------------------------- */
+@media (max-width: 767px) {
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-6);
+    padding-bottom: var(--sp-2);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filter-btn { flex-shrink: 0; }
+
+  .projects-grid {
+    display: flex;
+    gap: var(--sp-4);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-bottom: var(--sp-2);
+  }
+  .projects-grid::-webkit-scrollbar { display: none; }
+  .project-card {
+    flex: 0 0 85vw;
+    max-width: 85vw;
+    scroll-snap-align: center;
+  }
+  .project-card:hover { transform: none; }
+  .project-card__thumb { height: 160px; }
+  .project-card__body { padding: var(--sp-4); }
+  .project-card__links { flex-direction: row; flex-wrap: wrap; }
+  .project-card__links .btn { font-size: var(--fs-xs); }
+}
+
+/* ----- M5. Case Studies — collapsed cards + bottom sheet ----------------- */
+@media (max-width: 767px) {
+  .case-study { padding: var(--sp-4); margin-bottom: var(--sp-3); }
+  .case-study__grid { display: none; } /* hidden, shown in bottom sheet */
+  .case-study__expand-btn {
+    display: inline-flex;
+    margin-top: var(--sp-3);
+  }
+  .case-study__header { margin-bottom: var(--sp-3); }
+  .case-study__title { font-size: var(--fs-base); }
+  .case-study__summary-text {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+    line-height: 1.5;
+  }
+
+  /* Bottom sheet */
+  .sheet-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    background: rgba(15,23,42,.5);
+    backdrop-filter: blur(4px);
+  }
+  .sheet-overlay.open { display: flex; }
+  .sheet {
+    width: 100%;
+    max-height: 85vh;
+    background: var(--c-bg);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateY(100%);
+    transition: transform 300ms var(--ease);
+    padding: var(--sp-4) var(--sp-6) var(--sp-12);
+    padding-bottom: calc(var(--sp-12) + env(safe-area-inset-bottom, 0px));
+  }
+  .sheet-overlay.open .sheet { transform: translateY(0); }
+  .sheet__handle {
+    width: 40px; height: 4px;
+    background: var(--c-border);
+    border-radius: 2px;
+    margin: 0 auto var(--sp-6);
+    flex-shrink: 0;
+  }
+  .sheet__title { font-size: var(--fs-lg); font-weight: 700; margin-bottom: var(--sp-6); }
+  .sheet__close {
+    position: absolute;
+    top: var(--sp-4); right: var(--sp-4);
+    width: 36px; height: 36px;
+    border: none;
+    background: var(--c-bg-alt);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: var(--fs-lg);
+    color: var(--c-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Hide expand button on desktop */
+@media (min-width: 768px) {
+  .case-study__expand-btn { display: none; }
+  .case-study__summary-text { display: none; }
+}
+
+/* ----- M6. Workflow — vertical timeline ---------------------------------- */
+@media (max-width: 767px) {
+  .workflow {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  .workflow__step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-4);
+    text-align: left;
+  }
+  .workflow__step:not(:last-child) .workflow__num::after { display: none; }
+  .workflow__num {
+    margin: 0;
+    width: 36px; height: 36px;
+    font-size: var(--fs-sm);
+    flex-shrink: 0;
+  }
+  .workflow__step:not(:last-child) {
+    padding-bottom: var(--sp-3);
+    border-left: 2px solid var(--c-border);
+    margin-left: 17px;
+    padding-left: calc(var(--sp-4) + 17px);
+    margin-left: 0;
+  }
+  .workflow__step:not(:last-child) .workflow__num {
+    position: relative;
+  }
+  .workflow__step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 36px;
+    bottom: 0;
+    width: 2px;
+    background: var(--c-border);
+  }
+  .workflow__title { margin-bottom: var(--sp-1); font-size: var(--fs-sm); }
+  .workflow__desc { font-size: var(--fs-sm); }
+  .workflow__content { flex: 1; }
+}
+
+/* ----- M7. Stack — two-tab control --------------------------------------- */
+@media (max-width: 767px) {
+  .stack-split { grid-template-columns: 1fr; gap: 0; }
+  .stack-tabs {
+    display: flex;
+    gap: var(--sp-1);
+    margin-bottom: var(--sp-6);
+    background: var(--c-bg-alt);
+    border-radius: var(--radius-sm);
+    padding: var(--sp-1);
+  }
+  .stack-tab {
+    flex: 1;
+    padding: var(--sp-2) var(--sp-4);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: var(--c-text-muted);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--dur) var(--ease);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stack-tab[aria-selected="true"] {
+    background: var(--c-bg-card);
+    color: var(--c-accent);
+    box-shadow: var(--shadow-sm);
+  }
+  .stack-layer { display: none; }
+  .stack-layer[data-active="true"] { display: block; }
+  .stack-layer__title { font-size: var(--fs-base); margin-bottom: var(--sp-3); }
+  .stack-layer__sub { margin-bottom: var(--sp-4); }
+  .stack-list { gap: var(--sp-4); }
+  .stack-group { padding-bottom: var(--sp-4); }
+  .stack-group__title { margin-bottom: var(--sp-3); padding-bottom: var(--sp-2); }
+}
+
+/* ----- M8. About — 120px circle photo, intro moved here, accordion -------- */
+@media (max-width: 767px) {
+  .about-grid { grid-template-columns: 1fr; justify-items: center; gap: var(--sp-6); }
+  .about__photo {
+    width: 120px; height: 120px;
+    max-width: 120px;
+    border-radius: 50%;
+    margin: 0 auto 0;
+    flex-shrink: 0;
+  }
+  .about__content { width: 100%; }
+  .about__intro { font-size: var(--fs-base); margin-bottom: var(--sp-6); }
+
+  /* "Who I Help" stays visible, "How I Work" collapses */
+  .about__section--collapsible .about__section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--sp-4) 0;
+    background: var(--c-bg-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-align: left;
+    min-height: 48px;
+  }
+  .about__section--collapsible .about__section-header h3 {
+    margin: 0;
+    padding-left: var(--sp-4);
+    font-size: var(--fs-base);
+  }
+  .about__section--collapsible .about__section-toggle {
+    padding-right: var(--sp-4);
+    font-size: var(--fs-lg);
+    color: var(--c-text-soft);
+    transition: transform 200ms var(--ease);
+  }
+  .about__section--collapsible[data-open="true"] .about__section-toggle { transform: rotate(180deg); }
+  .about__section--collapsible .about__section-body {
+    display: none;
+    padding: var(--sp-4);
+  }
+  .about__section--collapsible[data-open="true"] .about__section-body { display: block; }
+  .about__section--collapsible .about__section-header:focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: -2px;
+  }
+}
+
+/* ----- M9. Proof — 2x2 grid, delete testimonials ------------------------- */
+@media (max-width: 767px) {
+  .proof-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-3); margin-bottom: var(--sp-6); }
+  .proof-stat { padding: var(--sp-4) var(--sp-2); }
+  .proof-stat__num { font-size: var(--fs-2xl); }
+  /* Hide testimonials heading + empty block */
+  #proof .section-header:last-of-type,
+  #proof > .container > div:last-child > div[style*="text-align:center"]:last-of-type,
+  #proof .testimonials { display: none; }
+}
+
+/* ----- M10. Contact — icon row + form merge ------------------------------ */
+@media (max-width: 767px) {
+  .contact-grid { grid-template-columns: 1fr; gap: var(--sp-6); }
+  .contact-info {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--sp-3);
+  }
+  .contact-item {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-1);
+    padding: var(--sp-3);
+    flex: 1;
+    text-align: center;
+  }
+  .contact-item__icon { width: 40px; height: 40px; }
+  .contact-item__icon svg { width: 18px; height: 18px; }
+  .contact-item__label { font-size: 10px; }
+  .contact-item__value { font-size: var(--fs-xs); }
+  .contact-item__value a { word-break: break-all; }
+
+  .contact-form { padding: var(--sp-4); }
+  .contact-form .form-group--row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-3);
+  }
+}
+
+/* ----- M11. Footer — minimal --------------------------------------------- */
+@media (max-width: 767px) {
+  .footer { padding-block: var(--sp-6); }
+  .footer__grid { grid-template-columns: 1fr; gap: var(--sp-4); text-align: center; }
+  .footer__col ul { flex-direction: row; justify-content: center; flex-wrap: wrap; gap: var(--sp-4); }
+  .footer__col { display: none; }
+  .footer__bottom { flex-direction: column; gap: var(--sp-3); }
+  .footer__social { justify-content: center; }
+  .footer__social a { width: 36px; height: 36px; }
+}
+
+/* ----- M12. Bottom action bar -------------------------------------------- */
+@media (max-width: 767px) {
+  .mobile-action-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex;
+    gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-4);
+    padding-bottom: calc(var(--sp-2) + env(safe-area-inset-bottom, 0px));
+    background: color-mix(in srgb, var(--c-bg) 95%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--c-border);
+    transform: translateY(100%);
+    transition: transform 300ms var(--ease);
+  }
+  .mobile-action-bar.visible { transform: translateY(0); }
+  .mobile-action-bar__btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    min-height: 48px;
+    padding: .75rem 1rem;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--dur) var(--ease);
+  }
+  .mobile-action-bar__btn--primary {
+    background: var(--c-accent);
+    color: #fff;
+    border: 2px solid var(--c-accent);
+  }
+  .mobile-action-bar__btn--secondary {
+    background: transparent;
+    color: var(--c-text);
+    border: 2px solid var(--c-border);
+  }
+
+  /* Add bottom padding so bar doesn't cover content */
+  body.has-action-bar { padding-bottom: 80px; }
+}
+
+/* Hide bottom bar on desktop */
+@media (min-width: 768px) {
+  .mobile-action-bar { display: none; }
+}
+
+/* ----- M13. Section-level reveal on mobile -------------------------------- */
+@media (max-width: 767px) {
+  .section .reveal { opacity: 1; transform: none; }
+  .section .reveal { transition: none; }
+}
+
+/* ----- M14. Modal adjustments -------------------------------------------- */
+@media (max-width: 767px) {
+  .modal-overlay { padding: 0; align-items: flex-end; }
+  .modal {
+    max-width: 100%;
+    max-height: 90vh;
+    margin: 0;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    transform: translateY(100%);
+    transition: transform 300ms var(--ease);
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .arch-block { grid-template-columns: 1fr; gap: var(--sp-3); }
+  .gallery__arrow { width: 36px; height: 36px; font-size: 1.25rem; }
+  .gallery__viewport { aspect-ratio: 4 / 3; }
+  .modal__header { padding: var(--sp-4) var(--sp-6); }
+  .modal__body { padding: var(--sp-4); }
+  .modal__section { margin-bottom: var(--sp-6); }
+  .modal__title { font-size: var(--fs-lg); }
+}
+
+/* ----- M15. Misc mobile spacing ------------------------------------------ */
+@media (max-width: 767px) {
+  :root {
+    --fs-hero: clamp(1.75rem, 6vw, 2.5rem);
+    --fs-3xl: 1.75rem;
+    --fs-4xl: 2.25rem;
+  }
+  .section { padding-block: var(--sp-12); }
+  .section-header { margin-bottom: var(--sp-6); }
+  .section-title { font-size: var(--fs-2xl); }
+  .container { padding-inline: var(--sp-4); }
+}
+
+@media (max-width: 360px) {
+  :root { --fs-hero: 1.5rem; }
+  .container { padding-inline: 12px; }
+  .hero__ctas { flex-direction: column; }
+  .contact-info { flex-wrap: wrap; }
+  .contact-item { min-width: 45%; }
+}
