@@ -1506,7 +1506,6 @@ details.about__section--collapsible .about__section-body { display: block; }
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
     gap: var(--sp-2);
     margin-bottom: var(--sp-6);
     padding-bottom: var(--sp-2);
@@ -1782,7 +1781,6 @@ details.about__section--collapsible .about__section-body { display: block; }
 @media (max-width: 767px) {
   .footer { padding-block: var(--sp-6); }
   .footer__grid { grid-template-columns: 1fr; gap: var(--sp-4); text-align: center; }
-  .footer__col ul { flex-direction: row; justify-content: center; flex-wrap: wrap; gap: var(--sp-4); }
   .footer__col { display: none; }
   .footer__bottom { flex-direction: column; gap: var(--sp-3); }
   .footer__social { justify-content: center; }
