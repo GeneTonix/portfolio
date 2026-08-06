@@ -394,6 +394,12 @@
 
     modalOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Move focus to close button after content renders
+    setTimeout(function () {
+      var closeBtn = document.querySelector('.modal__close');
+      if (closeBtn) closeBtn.focus();
+    }, 100);
   };
 
   /* ----- Gallery Carousel Navigation ------------------------------------ */
@@ -646,6 +652,7 @@
         showToast('Could not send — please email me directly');
         console.error('Form submission error:', err);
       }
+    });
   }
 
   /* ----- Nav active link on scroll -------------------------------------- */
