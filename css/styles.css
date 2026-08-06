@@ -1436,10 +1436,10 @@ details.about__section--collapsible .about__section-body { display: block; }
 /* ----- 2. Hero — hide visual + intro on mobile --------------------------- */
 @media (max-width: 767px) {
   .hero {
-    min-height: 100svh;
+    min-height: calc(100svh - 64px);
     display: flex;
     align-items: center;
-    padding-block: 80px var(--sp-8);
+    padding-block: var(--sp-6) var(--sp-8);
     overflow: hidden;
   }
   .hero__grid { grid-template-columns: 1fr; }
