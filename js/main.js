@@ -294,10 +294,13 @@
 
   /* ----- Modal (Case Study / Project Detail) ----------------------------- */
   const modalOverlay = document.getElementById('modalOverlay');
+  var modalLastFocused = null;
 
   window.openModal = function (projectId) {
     var p = projects.find(function (proj) { return proj.id === projectId; });
     if (!p || !modalOverlay) return;
+
+    modalLastFocused = document.activeElement;
 
     var archBlockHTML = '' +
       '<div class="arch-block">' +
@@ -465,6 +468,7 @@
     if (!modalOverlay) return;
     modalOverlay.classList.remove('open');
     document.body.style.overflow = '';
+    if (modalLastFocused) modalLastFocused.focus();
   };
 
   if (modalOverlay) {
@@ -473,8 +477,23 @@
     });
   }
 
+  // Escape to close + focus trap within modal
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
+    if (!modalOverlay || !modalOverlay.classList.contains('open')) return;
+    if (e.key === 'Escape') { closeModal(); return; }
+    if (e.key === 'Tab') {
+      var modalEl = modalOverlay.querySelector('.modal');
+      if (!modalEl) return;
+      var focusable = modalEl.querySelectorAll('a[href], button:not([disabled]), textarea, input, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
   });
 
   /* ----- Scroll Reveal --------------------------------------------------- */
