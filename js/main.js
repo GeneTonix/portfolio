@@ -691,18 +691,28 @@
      ====================================================================== */
 
   /* ----- Accordion one-open-at-a-time (capabilities) -------------------- */
-  // <details> elements work without JS. This just enforces one-open behavior
-  // and keeps aria-expanded in sync for screen readers.
+  // <details> elements work without JS. This enforces one-open behavior on mobile only.
   var capDetails = document.querySelectorAll('.cap-card');
   if (capDetails.length > 1) {
+    var capMobileMQ = window.matchMedia('(max-width: 767px)');
+
     capDetails.forEach(function (detail) {
       detail.addEventListener('toggle', function () {
+        if (!capMobileMQ.matches) return; // Desktop: allow multiple open
         if (detail.open) {
           capDetails.forEach(function (other) {
             if (other !== detail && other.open) other.open = false;
           });
         }
       });
+    });
+
+    // Re-evaluate when crossing breakpoint
+    capMobileMQ.addEventListener('change', function () {
+      // On entering desktop, open all details so content is visible
+      if (!capMobileMQ.matches) {
+        capDetails.forEach(function (d) { d.open = true; });
+      }
     });
   }
 
