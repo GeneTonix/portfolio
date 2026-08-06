@@ -171,7 +171,7 @@
     if (!projectsGrid) return;
     projectsGrid.innerHTML = projects.map(function (p) {
       var thumbHTML = p.thumbnail
-        ? '<img src="' + p.thumbnail + '" alt="' + p.title + '">'
+        ? '<img src="' + p.thumbnail + '" alt="' + p.title + '" width="680" height="360" loading="lazy">'
         : '';
 
       var liveBtn = p.liveDemo
