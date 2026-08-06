@@ -540,7 +540,7 @@
       e.preventDefault();
 
       // Check if Supabase is configured
-      if (typeof SUPABASE_URL === 'undefined' || typeof SUPABASE_ANON_KEY === 'undefined') {
+      if (typeof SUPABASE_URL === 'undefined' || typeof SUPABASE_ANON_KEY === 'undefined' || typeof LEADS_TABLE === 'undefined') {
         showToast('Form not configured — see README.md → Supabase Setup');
         return;
       }
@@ -590,36 +590,43 @@
         timestamp: now
       };
 
-      // Send to Supabase REST API
-      fetch(SUPABASE_URL + '/rest/v1/' + LEADS_TABLE, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(function (response) {
-        if (response.ok) {
-          showToast('Message sent! I\'ll get back to you soon.');
-          contactForm.reset();
-        } else if (response.status === 409) {
-          // Database rejected duplicate (unique constraint)
-          showToast('This message was already received — no need to resend');
-        } else {
-          throw new Error('Server returned ' + response.status);
-        }
-      })
-      .catch(function (error) {
-        showToast('Could not send — please email me directly');
-        console.error('Form submission error:', error);
-      })
-      .finally(function () {
+      // Send to Supabase REST API — wrapped in try/catch to always re-enable button
+      try {
+        fetch(SUPABASE_URL + '/rest/v1/' + LEADS_TABLE, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(function (response) {
+          if (response.ok) {
+            showToast('Message sent! I\'ll get back to you soon.');
+            contactForm.reset();
+          } else if (response.status === 409) {
+            // Database rejected duplicate (unique constraint)
+            showToast('This message was already received — no need to resend');
+          } else {
+            throw new Error('Server returned ' + response.status);
+          }
+        })
+        .catch(function (error) {
+          showToast('Could not send — please email me directly');
+          console.error('Form submission error:', error);
+        })
+        .finally(function () {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        });
+      } catch (err) {
+        // ReferenceError from undefined LEADS_TABLE or other sync error — always re-enable
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-      });
-    });
+        showToast('Could not send — please email me directly');
+        console.error('Form submission error:', err);
+      }
   }
 
   /* ----- Nav active link on scroll -------------------------------------- */
