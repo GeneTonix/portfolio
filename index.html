@@ -34,6 +34,16 @@
   <div class="container nav__inner">
     <a href="#hero" class="nav__brand">Gene<span>.</span></a>
 
+    <ul class="nav__links" id="navLinks" role="menubar">
+      <li role="none"><a href="#capabilities" role="menuitem">Capabilities</a></li>
+      <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
+      <li role="none"><a href="#case-studies" role="menuitem">Case Studies</a></li>
+      <li role="none"><a href="#workflow" role="menuitem">Workflow</a></li>
+      <li role="none"><a href="#stack" role="menuitem">Stack</a></li>
+      <li role="none"><a href="#about" role="menuitem">About</a></li>
+      <li role="none"><a href="#contact" role="menuitem" class="btn btn--primary btn--sm">Contact Me</a></li>
+    </ul>
+
     <div class="nav__actions">
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
       <button class="nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
@@ -43,18 +53,7 @@
   </div>
 </nav>
 
-<!-- Nav drawer links — outside <nav> to avoid backdrop-filter stacking context -->
-<ul class="nav__links" id="navLinks" role="menubar">
-  <li role="none"><a href="#capabilities" role="menuitem">Capabilities</a></li>
-  <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
-  <li role="none"><a href="#case-studies" role="menuitem">Case Studies</a></li>
-  <li role="none"><a href="#workflow" role="menuitem">Workflow</a></li>
-  <li role="none"><a href="#stack" role="menuitem">Stack</a></li>
-  <li role="none"><a href="#about" role="menuitem">About</a></li>
-  <li role="none"><a href="#contact" role="menuitem" class="btn btn--primary btn--sm">Contact Me</a></li>
-</ul>
-
-<!-- Nav drawer backdrop (CSS-controlled, JS toggles .open class) -->
+<!-- Nav drawer backdrop — direct child of body, not inside .nav -->
 <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
 <!-- ======================================================================
