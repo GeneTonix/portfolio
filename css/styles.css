@@ -554,12 +554,21 @@ details.about__section--collapsible .about__section-body { display: block; }
 
 /* ----- Project Cards ----------------------------------------------------- */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  display: flex;
   gap: var(--sp-6);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: var(--sp-4);
 }
+.projects-grid::-webkit-scrollbar { display: none; }
 
 .project-card {
+  flex: 0 0 380px;
+  max-width: 380px;
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   background: var(--c-bg-card);
@@ -1464,23 +1473,24 @@ details.about__section--collapsible .about__section-body { display: block; }
   .hero__trust svg { width: 16px; height: 16px; }
 }
 
-  /* Desktop: hide chevrons and disable summary toggle (details always open) */
-  details.cap-card > summary,
-  details.case-study > summary { pointer-events: none; }
-  details.cap-card > summary::-webkit-details-marker,
-  details.case-study > summary::-webkit-details-marker { display: none; }
-  details.cap-card > summary,
-  details.case-study > summary { list-style: none; }
-  details.cap-card .cap-card__chevron,
-  details.case-study .case-study__chevron { display: none; }
+/* ----- Desktop: hide chevrons and disable summary toggle (details always open) ----- */
+details.cap-card > summary,
+details.case-study > summary { pointer-events: none; }
+details.cap-card > summary::-webkit-details-marker,
+details.case-study > summary::-webkit-details-marker { display: none; }
+details.cap-card > summary,
+details.case-study > summary { list-style: none; }
+details.cap-card .cap-card__chevron,
+details.case-study .case-study__chevron { display: none; }
 
+/* ----- 3. Capabilities — details/summary accordion ---------------------- */
+@media (max-width: 767px) {
   /* Mobile: re-enable accordion */
-  @media (max-width: 767px) {
-    details.cap-card > summary,
-    details.case-study > summary { pointer-events: auto; }
-    details.cap-card .cap-card__chevron,
-    details.case-study .case-study__chevron { display: flex; }
-  }
+  details.cap-card > summary,
+  details.case-study > summary { pointer-events: auto; }
+  details.cap-card .cap-card__chevron,
+  details.case-study .case-study__chevron { display: flex; }
+
   .capability-grid { grid-template-columns: 1fr; gap: var(--sp-2); }
   details.cap-card {
     padding: 0;

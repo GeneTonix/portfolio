@@ -719,15 +719,21 @@
       if (!capMobileMQ.matches) {
         // Entering desktop: open all
         capDetails.forEach(function (d) { d.open = true; });
+        var csD = document.querySelectorAll('details.case-study');
+        csD.forEach(function (d) { d.open = true; });
       } else {
-        // Entering mobile: close all except first
-        capDetails.forEach(function (d, i) { d.open = (i === 0); });
+        // Entering mobile: close all
+        capDetails.forEach(function (d) { d.open = false; });
+        var csD = document.querySelectorAll('details.case-study');
+        csD.forEach(function (d) { d.open = false; });
       }
     });
 
-    // On load: if mobile, close all except first
+    // On load: if mobile, close all
     if (capMobileMQ.matches) {
-      capDetails.forEach(function (d, i) { d.open = (i === 0); });
+      capDetails.forEach(function (d) { d.open = false; });
+      var csDetails = document.querySelectorAll('details.case-study');
+      csDetails.forEach(function (d) { d.open = false; });
     }
   }
 
