@@ -721,11 +721,15 @@
         capDetails.forEach(function (d) { d.open = true; });
         var csD = document.querySelectorAll('details.case-study');
         csD.forEach(function (d) { d.open = true; });
+        var aboutD = document.querySelectorAll('details.about__section--collapsible');
+        aboutD.forEach(function (d) { d.open = true; });
       } else {
         // Entering mobile: close all
         capDetails.forEach(function (d) { d.open = false; });
         var csD = document.querySelectorAll('details.case-study');
         csD.forEach(function (d) { d.open = false; });
+        var aboutD = document.querySelectorAll('details.about__section--collapsible');
+        aboutD.forEach(function (d) { d.open = false; });
       }
     });
 
@@ -734,6 +738,8 @@
       capDetails.forEach(function (d) { d.open = false; });
       var csDetails = document.querySelectorAll('details.case-study');
       csDetails.forEach(function (d) { d.open = false; });
+      var aboutDetails = document.querySelectorAll('details.about__section--collapsible');
+      aboutDetails.forEach(function (d) { d.open = false; });
     }
   }
 

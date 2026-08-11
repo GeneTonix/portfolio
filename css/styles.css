@@ -1481,15 +1481,23 @@ details.case-study > summary::-webkit-details-marker { display: none; }
 details.cap-card > summary,
 details.case-study > summary { list-style: none; }
 details.cap-card .cap-card__chevron,
-details.case-study .case-study__chevron { display: none; }
+details.case-study .case-study__chevron,
+details.about__section--collapsible .about__section-toggle { display: none; }
+
+/* Desktop: disable summary toggle for About section */
+details.about__section--collapsible > summary { pointer-events: none; }
+details.about__section--collapsible > summary::-webkit-details-marker { display: none; }
+details.about__section--collapsible > summary { list-style: none; }
 
 /* ----- 3. Capabilities — details/summary accordion ---------------------- */
 @media (max-width: 767px) {
   /* Mobile: re-enable accordion */
   details.cap-card > summary,
-  details.case-study > summary { pointer-events: auto; }
+  details.case-study > summary,
+  details.about__section--collapsible > summary { pointer-events: auto; }
   details.cap-card .cap-card__chevron,
-  details.case-study .case-study__chevron { display: flex; }
+  details.case-study .case-study__chevron,
+  details.about__section--collapsible .about__section-toggle { display: flex; }
 
   .capability-grid { grid-template-columns: 1fr; gap: var(--sp-2); }
   details.cap-card {
