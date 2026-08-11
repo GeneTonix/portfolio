@@ -1485,9 +1485,8 @@ details.case-study .case-study__chevron,
 details.about__section--collapsible .about__section-toggle { display: none; }
 
 /* Desktop: disable summary toggle for About section */
-details.about__section--collapsible > summary { pointer-events: none; }
+details.about__section--collapsible > summary { pointer-events: none; display: block; list-style: none; }
 details.about__section--collapsible > summary::-webkit-details-marker { display: none; }
-details.about__section--collapsible > summary { list-style: none; }
 
 /* ----- 3. Capabilities — details/summary accordion ---------------------- */
 @media (max-width: 767px) {
