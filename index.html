@@ -34,15 +34,10 @@
   <div class="container nav__inner">
     <a href="#hero" class="nav__brand">Gene<span>.</span></a>
 
-    <ul class="nav__links" id="navLinks" role="menubar">
-      <li role="none"><a href="#capabilities" role="menuitem">Capabilities</a></li>
-      <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
-      <li role="none"><a href="#case-studies" role="menuitem">Case Studies</a></li>
-      <li role="none"><a href="#workflow" role="menuitem">Workflow</a></li>
-      <li role="none"><a href="#stack" role="menuitem">Stack</a></li>
-      <li role="none"><a href="#about" role="menuitem">About</a></li>
-      <li role="none"><a href="#contact" role="menuitem" class="btn btn--primary btn--sm">Contact Me</a></li>
-    </ul>
+    <!-- Nav links rendered here on desktop (CSS shows them inline).
+         On mobile, CSS moves them to a fixed drawer — they must be
+         a direct child of <body> for the z-index to escape .nav's
+         stacking context. JS handles the reparenting on load. -->
 
     <div class="nav__actions">
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
@@ -53,7 +48,19 @@
   </div>
 </nav>
 
-<!-- Nav drawer backdrop — direct child of body, not inside .nav -->
+<!-- Nav links — direct child of body so z-index escapes .nav stacking context.
+     CSS displays them inline inside .nav on desktop via flex. -->
+<ul class="nav__links" id="navLinks" role="menubar">
+  <li role="none"><a href="#capabilities" role="menuitem">Capabilities</a></li>
+  <li role="none"><a href="#projects" role="menuitem">Projects</a></li>
+  <li role="none"><a href="#case-studies" role="menuitem">Case Studies</a></li>
+  <li role="none"><a href="#workflow" role="menuitem">Workflow</a></li>
+  <li role="none"><a href="#stack" role="menuitem">Stack</a></li>
+  <li role="none"><a href="#about" role="menuitem">About</a></li>
+  <li role="none"><a href="#contact" role="menuitem" class="btn btn--primary btn--sm">Contact Me</a></li>
+</ul>
+
+<!-- Nav drawer backdrop — direct child of body -->
 <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
 <!-- ======================================================================

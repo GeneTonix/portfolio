@@ -211,7 +211,16 @@ ul, ol { list-style: none; }
   display: flex;
   align-items: center;
   gap: var(--sp-8);
+  /* Direct child of body — position inside nav bar on desktop */
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 64px;
+  z-index: 101;
+  pointer-events: none;
 }
+.nav__links > * { pointer-events: auto; }
 
 .nav__links a {
   font-size: var(--fs-sm);
@@ -1393,6 +1402,9 @@ details.about__section--collapsible .about__section-body { display: block; }
     box-shadow: -4px 0 30px rgba(0,0,0,.15);
     border-bottom: none;
     max-height: none;
+    pointer-events: auto;
+    left: auto;
+    height: 100dvh;
   }
   .nav__links.open { transform: translateX(0); }
   .nav__links li { width: 100%; }
