@@ -518,6 +518,7 @@ details.case-study > summary { cursor: default; }
 details.case-study .case-study__grid { display: grid; }
 details.about__section--collapsible > summary { cursor: default; }
 details.about__section--collapsible .about__section-body { display: block; }
+details.about__section--collapsible > summary { display: none; }
 
 /* Desktop: hide mobile-only elements */
 .about__hero-intro { display: none; }
@@ -1494,7 +1495,8 @@ details.about__section--collapsible > summary { list-style: none; }
   /* Mobile: re-enable accordion */
   details.cap-card > summary,
   details.case-study > summary,
-  details.about__section--collapsible > summary { pointer-events: auto; }
+  details.about__section--collapsible > summary { pointer-events: auto; display: flex; }
+  details.about__section--collapsible:not([open]) .about__section-body { display: none; }
   details.cap-card .cap-card__chevron,
   details.case-study .case-study__chevron,
   details.about__section--collapsible .about__section-toggle { display: flex; }
