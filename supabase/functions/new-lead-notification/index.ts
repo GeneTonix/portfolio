@@ -103,7 +103,7 @@ async function sendAutoRespond(lead: any) {
       <p style="margin-top: 24px;">
         Best regards,<br>
         <strong>Gene</strong><br>
-        <span style="color: #64748b;">UX/UI Designer</span>
+        <span style="color: #64748b;">Full-Stack Product Developer</span>
       </p>
     </div>
   `;
