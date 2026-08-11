@@ -518,7 +518,6 @@ details.case-study > summary { cursor: default; }
 details.case-study .case-study__grid { display: grid; }
 details.about__section--collapsible > summary { cursor: default; }
 details.about__section--collapsible .about__section-body { display: block; }
-details.about__section--collapsible > summary { display: none; }
 
 /* Desktop: hide mobile-only elements */
 .about__hero-intro { display: none; }
