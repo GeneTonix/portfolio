@@ -1464,8 +1464,23 @@ details.about__section--collapsible .about__section-body { display: block; }
   .hero__trust svg { width: 16px; height: 16px; }
 }
 
-/* ----- 3. Capabilities — details/summary accordion ---------------------- */
-@media (max-width: 767px) {
+  /* Desktop: hide chevrons and disable summary toggle (details always open) */
+  details.cap-card > summary,
+  details.case-study > summary { pointer-events: none; }
+  details.cap-card > summary::-webkit-details-marker,
+  details.case-study > summary::-webkit-details-marker { display: none; }
+  details.cap-card > summary,
+  details.case-study > summary { list-style: none; }
+  details.cap-card .cap-card__chevron,
+  details.case-study .case-study__chevron { display: none; }
+
+  /* Mobile: re-enable accordion */
+  @media (max-width: 767px) {
+    details.cap-card > summary,
+    details.case-study > summary { pointer-events: auto; }
+    details.cap-card .cap-card__chevron,
+    details.case-study .case-study__chevron { display: flex; }
+  }
   .capability-grid { grid-template-columns: 1fr; gap: var(--sp-2); }
   details.cap-card {
     padding: 0;

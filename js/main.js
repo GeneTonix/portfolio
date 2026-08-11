@@ -716,11 +716,19 @@
 
     // Re-evaluate when crossing breakpoint
     capMobileMQ.addEventListener('change', function () {
-      // On entering desktop, open all details so content is visible
       if (!capMobileMQ.matches) {
+        // Entering desktop: open all
         capDetails.forEach(function (d) { d.open = true; });
+      } else {
+        // Entering mobile: close all except first
+        capDetails.forEach(function (d, i) { d.open = (i === 0); });
       }
     });
+
+    // On load: if mobile, close all except first
+    if (capMobileMQ.matches) {
+      capDetails.forEach(function (d, i) { d.open = (i === 0); });
+    }
   }
 
   /* ----- Bottom action bar scroll observer ------------------------------- */
